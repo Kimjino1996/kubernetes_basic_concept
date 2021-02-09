@@ -36,18 +36,28 @@
     - 도커의 역할2 : name Space(커널) 와 cgroup(자원)을 통해 호스트 리소스를 할당함
     - linux 에서 window 용! 컨테이너 사용 x, 해당 컨테이너가 필요한 자원의 종류가 다른가 봄...
     
-    - kub
+    - k8s
         - pod 는 하나 이상의 컨테이너를 포함하고, pod 단위로 배포한다.
         - 쿠버네티스는 부하가 많이 걸리는 기능만 확장 가능.
 
 
-3. application 쿠버네티스 배포 과정
+3. application 도커 run 과정
 
 
     - hello.js 를 생성하고 해당 파일을 도커에서 container 화, 쿠버네티스에서 pod 화 시키는지 시각적으로 확인.
 
        ![startKub](https://user-images.githubusercontent.com/45062255/107106424-f4578600-686e-11eb-97b6-1d84d1b59e3e.PNG)
     - container 상태를 알아보기 위한 ps 명령어
+    
     - docker build -t repo/app_name .
         - -t + 레파지토리 + / + 파일이름+ : + version (기재 안할경우 latest) + docker 명세파일 ( Dockerfile 이라는 이름으로 명세할 경우 . 으로 표시)
         - docker exec -it 컨테이너ID /bin/bash 를 통해 컨테이너 내부로 들어갈 수 도 있음.
+    - docker images 입력시 현재 만들어진 image들을 확인
+    - docker run -d(백그라운드,데몬) -p(conatiner 내부의 port 와 외부로 노출 시킬 포트 번호가 변경이 있다는 것을 알림) 8100:8000(8100으로 외부에서 접속하면 8000으로 연결) 레포지토리/app_name
+    - docker hub 는 docker login 후 push 레포지토리/파일 
+    >> 참고로 내가 push 할 때는 repository 이름을 내 dockerhub ID 이름과 동일하게 설정 해놔야 push 됐음.
+
+4. k8s run 과정은 kubernetes 설치, UI 대쉬보드 기능 install 후 재 서술.
+
+
+
